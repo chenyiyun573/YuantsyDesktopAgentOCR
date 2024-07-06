@@ -8,7 +8,7 @@ from pynput.keyboard import Key, Controller as KeyboardController
 import json
 import dotenv
 from tencentcloud.common import credential
-from tencentcloud.common.profile.client_profile import ClientProfile
+from tencentcloud.common.profile.client_profile import ClientProfileo
 from tencentcloud.common.profile.http_profile import HttpProfile
 from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
 from tencentcloud.ocr.v20181119 import ocr_client, models
@@ -152,7 +152,7 @@ def execute_operations(operations_json):
     if op['type'] == 'mouse_click':
         x, y = op['x'], op['y']
         button = Button.left if op['button'] == 'left' else Button.right if op['button'] == 'right' else Button.middle
-        mouse.position = (x, y)
+        mouse.position = (x/2, y/2)
         if op['pressed']:
             mouse.press(button)
         else:

@@ -14,7 +14,7 @@ There are several things to solve the next:
 From user prompt, get a decription text of steps to execute.
 Then by Agent - Computer Interface, convert the description text into precious code executions.
 
-1. is the OCR location allied with the location of screen? because I see errors when GPT decide where to click
+1. is the OCR location allied with the location of screen? because I see errors when GPT decide where to click - done;
 2. sometimes, the GPT reponse with some other words include JSON, which we cannot convert to executions preciously, maybe use a small model to process it then pass it into execution.
 
 3. Current, we do not need to use GPT to make decisions of planning, just write some knowledge, steps to execute then let the agent execute the text decription one by one. 
@@ -60,5 +60,14 @@ Just divide 2 then try.
 
 20240702 0107 PT
 Divide by 2 then execute (x,y) in cmd exe script works. So damn weird. 
+
+
+20240702 2100 PT
+For this subtask:
+2. sometimes, the GPT reponse with some other words include JSON, which we cannot convert to executions preciously, maybe use a small model to process it then pass it into execution.
+
+Now, I am thinking that using a small LLM model still face problems of non-precise response we want. 
+For this sub-task, I am thinking that since transformer is a prediction model, we can define a small transformer, which takes description text (precise to human) to precise command (precise to machine.). It converts uncounterable possibilities of response into limited several response we want. Like fill one to two blanks with limited choices in exams. 
+
 
 
