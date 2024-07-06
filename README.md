@@ -70,4 +70,13 @@ Now, I am thinking that using a small LLM model still face problems of non-preci
 For this sub-task, I am thinking that since transformer is a prediction model, we can define a small transformer, which takes description text (precise to human) to precise command (precise to machine.). It converts uncounterable possibilities of response into limited several response we want. Like fill one to two blanks with limited choices in exams. 
 
 
+20240705-2204-PT
+I downloaded the repo and tried it on my mac M1, it cannot work correctly.
+I see the following drawbacks in just one try:
+1. For multiple key pressed short cut like cmd+space to open search bar, it cannot be recorded and replayed correctly.
+2. For mac, we often use the three-finger swipe left or right, my code cannot support it.
+So, the code demo need a lot of modifications to support mac. 
+Thus, I store current code repo as 1.0.0 which only support my several initial trials on windows. 
+
+
 
