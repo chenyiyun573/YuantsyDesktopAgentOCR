@@ -3,3 +3,9 @@ python-dotenv
 Pillow
 requests
 pynput
+
+# pyobjc
+# pyobjc-framework-Quartz 
+# pyobjc-framework-AppKit
+
+pyautogui

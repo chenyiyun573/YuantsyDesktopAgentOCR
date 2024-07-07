@@ -1,13 +1,10 @@
+
 import csv
 import time
 import ast
-from pynput.mouse import Button, Controller as MouseController
-from pynput.keyboard import Key, Controller as KeyboardController
+import pyautogui
 
-# Initialize controllers
-mouse = MouseController()
-keyboard = KeyboardController()
-
+# Function to execute commands
 def execute_command(command):
     command_type = command.get("type")
     
@@ -17,32 +14,38 @@ def execute_command(command):
         button = command.get("button")
         pressed = command.get("pressed")
 
-        mouse.position = (x/2, y/2)  # Adjusting for screen resolution
-        mouse_button = Button.left if button == "left" else Button.right
+        pyautogui.moveTo(x, y)
         
-        if pressed:
-            mouse.press(mouse_button)
-        else:
-            mouse.release(mouse_button)
+        if button == "left":
+            if pressed:
+                pyautogui.mouseDown(button='left')
+            else:
+                pyautogui.mouseUp(button='left')
+        elif button == "right":
+            if pressed:
+                pyautogui.mouseDown(button='right')
+            else:
+                pyautogui.mouseUp(button='right')
     
     elif command_type == "key_press":
         key = command.get("key")
         special = command.get("special", False)
         action = command.get("action")
-        
+
+        # Map special keys to pyautogui format
         if special:
-            key = getattr(Key, key, None)
-        if key:
-            if action == "press":
-                keyboard.press(key)
-            elif action == "release":
-                keyboard.release(key)
+            key = key.lower()
+
+        if action == "press":
+            pyautogui.keyDown(key)
+        elif action == "release":
+            pyautogui.keyUp(key)
     
     elif command_type == "mouse_scroll":
         dx = command.get("dx", 0)
         dy = command.get("dy", 0)
         
-        mouse.scroll(dx, dy)
+        pyautogui.scroll(dy, dx)
     else:
         print(f"Unknown command type: {command_type}")
 

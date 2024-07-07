@@ -1,11 +1,22 @@
-
-20240701 2249 PT
 On Windows:
 ```
 python -m venv .venv
 .venv/Scripts/activate
 python -m pip install -r requirements.txt -i https://mirrors.cloud.tencent.com/pypi/simple
 ```
+
+On Mac
+```
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt -i https://mirrors.cloud.tencent.com/pypi/simple
+```
+
+
+
+
+20240701 2249 PT
+
 
 Add OCR information into Single Agent, the code works.
 
@@ -79,4 +90,32 @@ So, the code demo need a lot of modifications to support mac.
 Thus, I store current code repo as 1.0.0 which only support my several initial trials on windows. 
 
 
+20240706-1545-PT
+Then I tried to code MacOS application to perform these recorder and executor functions, but it doesn't work well.
+https://github.com/chenyiyun573/20240706_LearningMacOSApp
+
+
+20240706-1550-PT
+But then it seems python can still execute gestures by using Apple Script, also the 3 finger swipe left or right can be executed by keyboard actions like ctrl+left or ctrl+right.
+
+I will replace the cmd_exe.py and cmd_recorder.py with the support to key press and key release. the version 1.0.0 only support press and release as one action, now it will be two actions recorded and replayed. So I hope it can support multiple key events together. 
+
+
+20240706-2040-PT
+I tried to use pynput to execute multiple key events together, but it seems not work well for some gestures like 3 finger swipe left or right.
+I also try to call Apple Scripts, it works well. 
+
+
+Also, I modified the cmd_recorder.py and cmd_exe.py to support multiple key events together on Mac. The modification is like that, for example, the key press and key release will be recorded as two actions, and the key press and key release will be executed as two actions.
+
+20240706-2051-PT
+The pynput cannot support 'ctrl+left' or 'ctrl+right' on Mac. I use the pyautogui instead in cmd_exe2.py, it works well to support the 3 finger swipe left or right using ctrl+left or ctrl+right.
+
+
+20240706-2103-PT
+I found that the cvs of special key recorded by pynput cannot be executed by pyautogui in cmd_exe2.py successfully.
+like the cmd and command below. So it need to be converted to the format of pyautogui.
+This is modified into cmd_exe3.py.
+
+This version of code is stored as 1.0.1. 
 

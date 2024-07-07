@@ -1,13 +1,17 @@
+"""
+20240706-2103-PT
+I found that the cvs of special key recorded by pynput cannot be executed by pyautogui in cmd_exe2.py successfully.
+like the cmd and command below. So it need to be converted to the format of pyautogui.
+This is modified into cmd_exe3.py.
+"""
+
+
 import csv
 import time
 import ast
-from pynput.mouse import Button, Controller as MouseController
-from pynput.keyboard import Key, Controller as KeyboardController
+import pyautogui
 
-# Initialize controllers
-mouse = MouseController()
-keyboard = KeyboardController()
-
+# Function to execute commands
 def execute_command(command):
     command_type = command.get("type")
     
@@ -17,32 +21,40 @@ def execute_command(command):
         button = command.get("button")
         pressed = command.get("pressed")
 
-        mouse.position = (x/2, y/2)  # Adjusting for screen resolution
-        mouse_button = Button.left if button == "left" else Button.right
+        pyautogui.moveTo(x, y)
         
-        if pressed:
-            mouse.press(mouse_button)
-        else:
-            mouse.release(mouse_button)
+        if button == "left":
+            if pressed:
+                pyautogui.mouseDown(button='left')
+            else:
+                pyautogui.mouseUp(button='left')
+        elif button == "right":
+            if pressed:
+                pyautogui.mouseDown(button='right')
+            else:
+                pyautogui.mouseUp(button='right')
     
     elif command_type == "key_press":
         key = command.get("key")
         special = command.get("special", False)
         action = command.get("action")
-        
+
+        # Map special keys to pyautogui format
         if special:
-            key = getattr(Key, key, None)
-        if key:
-            if action == "press":
-                keyboard.press(key)
-            elif action == "release":
-                keyboard.release(key)
+            if key == 'cmd':
+                key = 'command'
+            key = key.lower()
+
+        if action == "press":
+            pyautogui.keyDown(key)
+        elif action == "release":
+            pyautogui.keyUp(key)
     
     elif command_type == "mouse_scroll":
         dx = command.get("dx", 0)
         dy = command.get("dy", 0)
         
-        mouse.scroll(dx, dy)
+        pyautogui.scroll(dy, dx)
     else:
         print(f"Unknown command type: {command_type}")
 
@@ -58,8 +70,8 @@ with open(csv_file_path, mode='r', newline='') as file:
         try:
             # Use ast.literal_eval to safely evaluate the string as a dictionary
             command = ast.literal_eval(command_str)
+            print(f"Executing command at {timestamp}: {command}")
             execute_command(command)
-            print(f"Executed command at {timestamp}: {command}")
             time.sleep(1)  # Adjust the sleep time as necessary
         except (SyntaxError, ValueError) as e:
             print(f"Error: {e} in line: {command_str}")

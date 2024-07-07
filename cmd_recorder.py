@@ -58,7 +58,27 @@ with open(log_file, mode='w', newline='') as file:
         command = {
             "type": "key_press",
             "key": key_name,
-            "special": special
+            "special": special,
+            "action": "press"
+        }
+        writer.writerow([timestamp, command])
+        file.flush()
+        print(f"[DEBUG] {command}")
+
+    def on_release(key):
+        event_time = datetime.now()
+        timestamp = event_time.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+        try:
+            key_name = key.char
+            special = False
+        except AttributeError:
+            key_name = str(key).split('.')[1]
+            special = True
+        command = {
+            "type": "key_press",
+            "key": key_name,
+            "special": special,
+            "action": "release"
         }
         writer.writerow([timestamp, command])
         file.flush()
@@ -66,6 +86,6 @@ with open(log_file, mode='w', newline='') as file:
 
     # Set up listeners
     with mouse.Listener(on_click=on_click, on_scroll=on_scroll) as mouse_listener:
-        with keyboard.Listener(on_press=on_press) as keyboard_listener:
+        with keyboard.Listener(on_press=on_press, on_release=on_release) as keyboard_listener:
             mouse_listener.join()
             keyboard_listener.join()
