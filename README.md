@@ -119,3 +119,9 @@ This is modified into cmd_exe3.py.
 
 This version of code is stored as 1.0.1. 
 
+
+20240707-1304-PT
+On the mac:
+I found that pynput cannot record F1-F12 keys on mac. Another problem I face is that the pyautogui on the desktop screen of mac, it cannot execute cmd+space to open search bar. But on other app whole screen of mac, it can execute cmd+space to open search bar.
+Next step, I will try to verify these problems.
+
