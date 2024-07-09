@@ -126,3 +126,13 @@ I found that pynput cannot record F1-F12 keys on mac. Another problem I face is 
 Next step, I will try to verify these problems.
 
 This version of code is stored as 1.0.2
+
+
+
+20240709 1228 PT
+Added a script under frames, which can be used to find differences between two screenshots and take the first one as the base, second one as changes.
+The result and some test cases are stored under the folder screenshots.
+
+This version of code is stored as 1.0.3.
+
+

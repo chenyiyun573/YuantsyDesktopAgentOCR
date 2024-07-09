@@ -9,3 +9,5 @@ pynput
 # pyobjc-framework-AppKit
 
 pyautogui
+
+numpy
