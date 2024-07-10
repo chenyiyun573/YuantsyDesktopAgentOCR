@@ -7,6 +7,7 @@ import os
 import requests
 from PIL import Image, ImageDraw, ImageFont, ImageGrab
 from io import BytesIO
+import time
 import base64
 import json
 import dotenv
@@ -74,6 +75,9 @@ def add_ocr_results_to_image(image, ocr_results):
             draw.text((x, y), text, fill="red", font=font)
 
     return image
+
+
+time.sleep(3)
 
 # Capture screenshot and get its dimensions
 image_base64, screenshot = get_encoded_image()

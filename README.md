@@ -136,3 +136,11 @@ The result and some test cases are stored under the folder screenshots.
 This version of code is stored as 1.0.3.
 
 
+20240709 1641 PT
+Doing: Provide OCR results and PNG to GPT4o web page chatting box directly and let it make one simple decision like "Find location of the search button then return (x,y) as click action". This decision can generalize a lot of different scenarios. 
+
+I added a folder click_position_verify to verify the click position of the button on the web page from the result of GPT4 webpage. 
+
+It works well. 
+
+This version of code is stored as 1.0.4.
