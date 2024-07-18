@@ -144,3 +144,12 @@ I added a folder click_position_verify to verify the click position of the butto
 It works well. 
 
 This version of code is stored as 1.0.4.
+
+
+20240717 2144 PT
+I added a folder keyboard_iteration to iterate the keyboard events on macbook.
+Next todo is to test on windows. 
+
+This version of code is stored as 1.0.5.
+
+
