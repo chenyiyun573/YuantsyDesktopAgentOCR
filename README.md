@@ -153,3 +153,9 @@ Next todo is to test on windows.
 This version of code is stored as 1.0.5.
 
 
+20240718 2324 PT 
+Add windows part to the keyboard_iteration part. 
+There are several unsolved problems in it.
+
+This version of code is stored as 1.0.6
+

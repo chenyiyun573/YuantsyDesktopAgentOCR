@@ -1,14 +1,10 @@
 """
-Notes from Yiyun Chen 20240717 2030 PT
+All keys in this script work well on windows 11. 20240718 Yiyun Chen
 """
 import pyautogui
 import time
 
 # List of keys to iterate over
-
-"""
-List of keys1, keys2, keys3 works well on macbook. 20240717
-"""
 keys1 = [
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -35,7 +31,7 @@ keys3 = ['up', 'down', 'left', 'right']
 time.sleep(5)  # Delay to switch to the desired window`-=[]\;'`
 
 # Iterate over each key and press it
-for key in keys1:
+for key in keys3:
     pyautogui.press(key)
     print(f"Pressed {key}")
     time.sleep(0.5)  # short delay to see the effect of each key press
