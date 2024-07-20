@@ -159,3 +159,10 @@ There are several unsolved problems in it.
 
 This version of code is stored as 1.0.6
 
+
+20240719 1555 PT
+I added a folder named image_recognition. Added one script named tencent_label_api in it which is Tencent image label API. 
+The code works, but the API's output is not very accurate. 
+
+This version of code is stored as 1.0.7.
+
